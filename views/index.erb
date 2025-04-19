@@ -107,18 +107,21 @@
     <% end %>
 
     <form action="/reply" method="post" id="reply-form">
-      <textarea name="text" placeholder="Sua resposta em português" required></textarea><br>
-      <button type="submit">Traduzir</button>
+      <textarea name="text" placeholder="Digite sua mensagem em português" required></textarea><br>
+      <button type="submit">Visualizar tradução</button>
     </form>
 
     <div id="error-message"></div>
     <div id="success-message"></div>
 
     <div id="confirm-section">
-      <p><strong>Tradução:</strong> <span id="translated-text"></span></p>
-      <form action="/send" method="post">
+      <p><strong>Texto original (PT):</strong> <span id="original-text"></span></p>
+      <p><strong>Tradução (EN):</strong> <span id="translated-text"></span></p>
+      <form action="/send" method="post" id="send-form">
         <input type="hidden" name="text" id="final-text">
-        <button type="submit">Confirmar envio</button>
+        <input type="hidden" name="original" id="original-text-input">
+        <button type="submit">Confirmar e enviar</button>
+        <button type="button" onclick="document.getElementById('confirm-section').style.display = 'none'">Cancelar</button>
       </form>
     </div>
   </div>
@@ -130,21 +133,25 @@
       const data = new FormData(form);
       const errorMessage = document.getElementById('error-message');
       const successMessage = document.getElementById('success-message');
+      const originalText = form.querySelector('textarea').value;
 
-      errorMessage.textContent = '';  // Reset error message
-      successMessage.textContent = '';  // Reset success message
+      errorMessage.textContent = '';
+      successMessage.textContent = '';
 
       try {
         const res = await fetch('/reply', { method: 'POST', body: data });
         const json = await res.json();
 
         if (res.ok) {
+          document.getElementById('original-text').textContent = originalText;
           document.getElementById('translated-text').textContent = json.translated;
           document.getElementById('final-text').value = json.translated;
+          document.getElementById('original-text-input').value = originalText;
           document.getElementById('confirm-section').style.display = 'block';
-          successMessage.textContent = 'Tradução realizada com sucesso!';
+          form.querySelector('textarea').value = ''; // Limpa o campo após tradução
+          successMessage.textContent = 'Tradução realizada! Por favor, confirme antes de enviar.';
         } else {
-          errorMessage.textContent = 'Erro ao traduzir. Tente novamente.';
+          errorMessage.textContent = json.error || 'Erro ao traduzir. Tente novamente.';
         }
       } catch (error) {
         errorMessage.textContent = 'Erro de comunicação com o servidor. Tente novamente.';

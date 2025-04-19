@@ -18,10 +18,10 @@ logger.level = Logger::INFO
 puts "============================================="
 puts "SLACK_CHANNEL_ID: #{ENV['SLACK_CHANNEL_ID']}"
 puts "============================================="
-puts "============================================="
 puts "LLM_API_KEY: #{ENV['LLM_API_KEY']}"
 puts "============================================="
-puts "LLM_BASE_URL: #{ENV['LLM_BASE_URL']}"
+puts "LLM_EN_PT_URL: #{ENV['LLM_EN_PT_URL']}"
+puts "LLM_PT_EN_URL: #{ENV['LLM_PT_EN_URL']}"
 puts "============================================="
 
 # Função para buscar mensagens do Slack
@@ -39,17 +39,25 @@ def fetch_messages
 end
 
 
-def translate(text)
+def translate(text, direction = :en_to_pt)
   # Verifica se as variáveis de ambiente estão configuradas corretamente
-  unless ENV['LLM_API_KEY'] && ENV['LLM_BASE_URL']
-    puts "LLM_API_KEY ou LLM_BASE_URL não estão configurados corretamente."
+  unless ENV['LLM_API_KEY'] && ENV['LLM_EN_PT_URL'] && ENV['LLM_PT_EN_URL']
+    puts "LLM_API_KEY ou URLs de tradução não estão configurados corretamente."
     return "Erro de configuração"
   end
 
+  # Seleciona a URL baseado na direção da tradução
+  url = case direction
+        when :pt_to_en
+          ENV['LLM_PT_EN_URL']
+        else
+          ENV['LLM_EN_PT_URL']
+        end
+
   # Definindo os cabeçalhos para a requisição
   headers = {
-    "Authorization" => "Bearer #{ENV['LLM_API_KEY']}", # Token da API
-    "Content-Type" => "application/json" # Tipo de conteúdo como JSON
+    "Authorization" => "Bearer #{ENV['LLM_API_KEY']}", 
+    "Content-Type" => "application/json"
   }
 
   # Removendo menções do Slack e limpando o texto
@@ -61,14 +69,12 @@ def translate(text)
   }
 
   # Log da requisição para verificar o que está sendo enviado
-  puts "Enviando para Hugging Face: #{data.to_json}"
+  puts "Enviando para Hugging Face (#{direction}): #{data.to_json}"
 
   begin
-    # binding.pry
     # Enviando a requisição POST para a API
-    response = HTTParty.post(ENV['LLM_BASE_URL'], body: data.to_json, headers: headers)
+    response = HTTParty.post(url, body: data.to_json, headers: headers)
   rescue StandardError => e
-    # Tratamento de erros na requisição
     puts "Erro na requisição: #{e.message}"
     return "Erro ao traduzir"
   end
@@ -107,7 +113,7 @@ Thread.new do
         messages << {
           ts: msg['ts'],
           original: msg['text'],
-          translated: translate(msg['text'])
+          translated: translate(msg['text'], :en_to_pt)  # Especifica direção EN->PT
         }
       end
     rescue StandardError => e
@@ -132,32 +138,43 @@ post '/reply' do
     return { error: "Texto vazio" }.to_json
   end
 
-  en = translate(pt)  # Traduz o texto para o inglês
+  en = translate(pt, :pt_to_en)  # Especifica direção PT->EN
   { translated: en }.to_json
 end
 
 # Rota para enviar a resposta para o Slack
 post '/send' do
   text = params[:text]
+  original = params[:original]
 
   # Validação para garantir que o texto não esteja vazio
   if text.nil? || text.strip.empty?
     return { error: "Texto vazio" }.to_json
   end
 
-  # Envia a mensagem para o Slack
+  # Envia a mensagem traduzida para o Slack
   response = HTTParty.post("https://slack.com/api/chat.postMessage", {
     headers: { "Authorization" => "Bearer #{ENV['SLACK_BOT_TOKEN']}" },
     body: {
       channel: ENV['SLACK_CHANNEL_ID'],
-      text: text
+      text: "#{text}"
     }
   })
 
   if response.code == 200
+    # Adiciona a mensagem à lista local imediatamente
+    messages.unshift({
+      ts: Time.now.to_i.to_s,
+      original: text,
+      translated: original
+    })
+    
+    content_type :json
+    { success: true }.to_json
     redirect '/'
   else
-    return { error: "Erro ao enviar mensagem para o Slack" }.to_json
+    content_type :json
+    { error: "Erro ao enviar mensagem para o Slack" }.to_json
   end
 end
 
