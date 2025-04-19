@@ -93,4 +93,4 @@ ruby app.rb
 
 - As mensagens do canal do Slack serão atualizadas automaticamente a cada 5 segundos
 - Para responder em português, use o campo de texto na parte inferior
-- Confirme a tradução antes de enviar para o Slack
+- Confirme a tradução antes de enviar para o Slack# Desafio_translated
