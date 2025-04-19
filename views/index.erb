@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slack Translator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+    }
+
+    header {
+      background-color: #0073e6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .message {
+      background-color: #ffffff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .message strong {
+      color: #333;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #confirm-section {
+      display: none;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #confirm-section p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    #error-message {
+      color: red;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #success-message {
+      color: green;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Slack Translator</h1>
+  </header>
+
+  <div class="content">
+    <h2>Mensagens</h2>
+
+    <% messages.each do |m| %>
+      <div class="message">
+        <p><strong>EN:</strong> <%= m[:original] %></p>
+        <p><strong>PT:</strong> <%= m[:translated] %></p>
+      </div>
+    <% end %>
+
+    <form action="/reply" method="post" id="reply-form">
+      <textarea name="text" placeholder="Sua resposta em português" required></textarea><br>
+      <button type="submit">Traduzir</button>
+    </form>
+
+    <div id="error-message"></div>
+    <div id="success-message"></div>
+
+    <div id="confirm-section">
+      <p><strong>Tradução:</strong> <span id="translated-text"></span></p>
+      <form action="/send" method="post">
+        <input type="hidden" name="text" id="final-text">
+        <button type="submit">Confirmar envio</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('reply-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const errorMessage = document.getElementById('error-message');
+      const successMessage = document.getElementById('success-message');
+
+      errorMessage.textContent = '';  // Reset error message
+      successMessage.textContent = '';  // Reset success message
+
+      try {
+        const res = await fetch('/reply', { method: 'POST', body: data });
+        const json = await res.json();
+
+        if (res.ok) {
+          document.getElementById('translated-text').textContent = json.translated;
+          document.getElementById('final-text').value = json.translated;
+          document.getElementById('confirm-section').style.display = 'block';
+          successMessage.textContent = 'Tradução realizada com sucesso!';
+        } else {
+          errorMessage.textContent = 'Erro ao traduzir. Tente novamente.';
+        }
+      } catch (error) {
+        errorMessage.textContent = 'Erro de comunicação com o servidor. Tente novamente.';
+      }
+    };
+
+    // Função para buscar e atualizar mensagens
+    async function atualizarMensagens() {
+      try {
+        const response = await fetch('/messages');
+        const messages = await response.json();
+        const contentDiv = document.querySelector('.content');
+        const messagesHtml = messages.map(m => `
+          <div class="message">
+            <p><strong>EN:</strong> ${m.original}</p>
+            <p><strong>PT:</strong> ${m.translated}</p>
+          </div>
+        `).join('');
+        
+        // Atualiza apenas a seção de mensagens
+        const messagesSection = document.querySelector('.content h2').nextElementSibling;
+        while (messagesSection.nextElementSibling && messagesSection.nextElementSibling.className === 'message') {
+          messagesSection.nextElementSibling.remove();
+        }
+        messagesSection.insertAdjacentHTML('afterend', messagesHtml);
+      } catch (error) {
+        console.error('Erro ao atualizar mensagens:', error);
+      }
+    }
+
+    // Atualiza as mensagens a cada 5 segundos
+    setInterval(atualizarMensagens, 5000);
+  </script>
+
+</body>
+</html>

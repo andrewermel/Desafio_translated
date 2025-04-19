@@ -1,0 +1,28 @@
+# Arquivo de variáveis de ambiente (NUNCA versionar)
+.env
+
+# Histórico do pry (debug)
+pry_history
+
+# Arquivos de log
+*.log
+
+# Arquivos de sistema (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários de editores
+*.swp
+*.swo
+
+# Configurações de IDEs (VSCode, RubyMine, etc)
+.vscode/
+.idea/
+
+# Cache do bundler
+.bundle/
+vendor/
+
+# Informações da versão Ruby (caso use RVM ou rbenv)
+.ruby-version
+.ruby-gemset
