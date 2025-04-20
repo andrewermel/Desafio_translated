@@ -5,11 +5,44 @@ require 'dotenv/load'
 require 'pry'
 require 'logger'
 require 'cgi'
+require 'rack'
 
-# Configuração do servidor
-set :bind, '0.0.0.0'  # Permite acesso externo
+# Configuração básica do Sinatra
+set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
-set :logging, true
+set :environment, :production
+enable :logging
+
+# Configurações de proteção e CORS
+disable :protection
+set :protection, except: [:remote_token, :frame_options, :json_csrf]
+
+before do
+  headers 'Access-Control-Allow-Origin' => '*',
+          'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST'],
+          'Access-Control-Allow-Headers' => 'Content-Type'
+end
+
+options "*" do
+  200
+end
+
+require 'rack/cors'
+
+# Configuração do CORS
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', 
+      methods: [:get, :post, :options],
+      headers: :any
+  end
+end
+
+# Configuração básica do Sinatra
+set :bind, '0.0.0.0'
+set :port, ENV['PORT'] || 4567
+set :protection, :except => [:json_csrf]
 
 # Configurar logger como variável global
 $logger = Logger.new('application.log')
