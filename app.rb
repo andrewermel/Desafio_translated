@@ -20,16 +20,39 @@ TRANSLATION_CACHE = {}
 
 # Função para buscar mensagens do Slack
 def fetch_messages
-  url = "https://slack.com/api/conversations.history?channel=#{ENV['SLACK_CHANNEL_ID']}"
+  # Configurações para buscar as últimas mensagens
+  params = {
+    channel: ENV['SLACK_CHANNEL_ID'],
+    limit: 100,  # Número máximo de mensagens para buscar
+    inclusive: true,  # Incluir a mensagem mais antiga
+    oldest: (Time.now - (7 * 24 * 60 * 60)).to_i  # Mensagens da última semana
+  }
+  
+  query = params.map { |k,v| "#{k}=#{v}" }.join('&')
+  url = "https://slack.com/api/conversations.history?#{query}"
   headers = { "Authorization" => "Bearer #{ENV['SLACK_BOT_TOKEN']}" }
 
-  response = HTTParty.get(url, headers: headers)
-  json = JSON.parse(response.body)
+  begin
+    $logger.info("Buscando mensagens do Slack com os parâmetros: #{params.inspect}")
+    response = HTTParty.get(url, headers: headers)
+    json = JSON.parse(response.body)
 
-  # Retorna um array vazio caso algo dê errado
-  return [] unless json['ok'] && json['messages']
+    if !json['ok']
+      $logger.error("Erro ao buscar mensagens do Slack: #{json['error']}")
+      return []
+    end
 
-  json['messages']
+    # Log do número de mensagens encontradas
+    if json['messages']
+      $logger.info("Encontradas #{json['messages'].length} mensagens no canal")
+    end
+
+    return [] unless json['ok'] && json['messages']
+    json['messages'].reverse  # Invertendo para mostrar na ordem cronológica
+  rescue StandardError => e
+    $logger.error("Erro ao buscar mensagens do Slack: #{e.message}")
+    []
+  end
 end
 
 # Função para gerar chave de cache
