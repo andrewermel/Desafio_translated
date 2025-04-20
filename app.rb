@@ -4,25 +4,19 @@ require 'json'
 require 'dotenv/load'
 require 'pry'
 require 'logger'
+require 'cgi'
 
 # Configuração do servidor
 set :bind, '0.0.0.0'  # Permite acesso externo
 set :port, ENV['PORT'] || 4567
 set :logging, true
 
-# Configurar logger
-logger = Logger.new('application.log')
-logger.level = Logger::INFO
+# Configurar logger como variável global
+$logger = Logger.new('application.log')
+$logger.level = Logger::INFO
 
-# Removido print das variáveis sensíveis no console
-puts "============================================="
-puts "SLACK_CHANNEL_ID: #{ENV['SLACK_CHANNEL_ID']}"
-puts "============================================="
-puts "LLM_API_KEY: #{ENV['LLM_API_KEY']}"
-puts "============================================="
-puts "LLM_EN_PT_URL: #{ENV['LLM_EN_PT_URL']}"
-puts "LLM_PT_EN_URL: #{ENV['LLM_PT_EN_URL']}"
-puts "============================================="
+# Cache de traduções
+TRANSLATION_CACHE = {}
 
 # Função para buscar mensagens do Slack
 def fetch_messages
@@ -38,11 +32,43 @@ def fetch_messages
   json['messages']
 end
 
+# Função para gerar chave de cache
+def cache_key(text, direction)
+  "#{text}:#{direction}"
+end
+
+# Função para traduzir usando Google Translate como fallback
+def translate_with_google(text, direction)
+  source_lang = direction == :pt_to_en ? 'pt' : 'en'
+  target_lang = direction == :pt_to_en ? 'en' : 'pt'
+  
+  encoded_text = CGI.escape(text)
+  url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=#{source_lang}&tl=#{target_lang}&dt=t&q=#{encoded_text}"
+  
+  begin
+    response = HTTParty.get(url)
+    if response.code == 200
+      json = JSON.parse(response.body)
+      translated = json[0].map { |segment| segment[0] }.join(' ')
+      return translated
+    end
+  rescue => e
+    $logger.error("Erro no Google Translate: #{e.message}")
+  end
+  nil
+end
 
 def translate(text, direction = :en_to_pt)
+  # Verificar cache primeiro
+  cache_key_str = cache_key(text, direction)
+  if TRANSLATION_CACHE[cache_key_str]
+    $logger.info("Usando tradução em cache para: #{text}")
+    return TRANSLATION_CACHE[cache_key_str]
+  end
+
   # Verifica se as variáveis de ambiente estão configuradas corretamente
   unless ENV['LLM_API_KEY'] && ENV['LLM_EN_PT_URL'] && ENV['LLM_PT_EN_URL']
-    puts "LLM_API_KEY ou URLs de tradução não estão configurados corretamente."
+    $logger.error("LLM_API_KEY ou URLs de tradução não estão configuradas corretamente.")
     return "Erro de configuração"
   end
 
@@ -54,47 +80,83 @@ def translate(text, direction = :en_to_pt)
           ENV['LLM_EN_PT_URL']
         end
 
-  # Definindo os cabeçalhos para a requisição
   headers = {
     "Authorization" => "Bearer #{ENV['LLM_API_KEY']}", 
     "Content-Type" => "application/json"
   }
 
-  # Removendo menções do Slack e limpando o texto
   clean_text = text.gsub(/<@[^>]+>/, '').strip
+  data = { inputs: clean_text }
 
-  # Preparando os dados para enviar na requisição
-  data = {
-    inputs: clean_text
-  }
+  # Configurações de retry
+  max_retries = 5  # Aumentado para 5 tentativas
+  retry_count = 0
+  retry_delay = 2 # segundos
 
-  # Log da requisição para verificar o que está sendo enviado
-  puts "Enviando para Hugging Face (#{direction}): #{data.to_json}"
-
-  begin
-    # Enviando a requisição POST para a API
-    response = HTTParty.post(url, body: data.to_json, headers: headers)
-  rescue StandardError => e
-    puts "Erro na requisição: #{e.message}"
-    return "Erro ao traduzir"
-  end
-
-  # Verificando se a resposta foi bem-sucedida
-  if response.code != 200
-    puts "Erro na tradução: Código #{response.code} - #{response.body}"
-    return "Erro na tradução"
-  else
-    # Processa a resposta caso o código de status seja 200
+  while retry_count < max_retries
     begin
-      json = JSON.parse(response.body)
-      result = json.dig(0, "translation_text") || "Erro na tradução"
-      puts "Resposta da API: #{result}"
-      result
-    rescue => e
-      puts "Erro ao processar a resposta: #{e.message}"
-      "Erro ao processar resposta"
+      $logger.info("Tentativa #{retry_count + 1} de #{max_retries} - Enviando para Hugging Face (#{direction}): #{data.to_json}")
+      
+      response = HTTParty.post(url, body: data.to_json, headers: headers)
+
+      if response.code == 503
+        retry_count += 1
+        if retry_count < max_retries
+          $logger.info("Erro 503 recebido. Aguardando #{retry_delay} segundos antes de tentar novamente...")
+          sleep retry_delay
+          retry_delay *= 2
+          next
+        else
+          # Tentar Google Translate como fallback
+          $logger.info("Tentando Google Translate como fallback...")
+          if result = translate_with_google(clean_text, direction)
+            TRANSLATION_CACHE[cache_key_str] = result
+            return result
+          end
+        end
+      end
+
+      if response.code != 200
+        $logger.error("Erro na tradução: Código #{response.code} - #{response.body}")
+        # Tentar Google Translate como fallback
+        if result = translate_with_google(clean_text, direction)
+          TRANSLATION_CACHE[cache_key_str] = result
+          return result
+        end
+        return "Erro na tradução"
+      else
+        begin
+          json = JSON.parse(response.body)
+          result = json.dig(0, "translation_text") || "Erro na tradução"
+          # Armazenar no cache
+          TRANSLATION_CACHE[cache_key_str] = result
+          $logger.info("Resposta da API: #{result}")
+          return result
+        rescue => e
+          $logger.error("Erro ao processar a resposta: #{e.message}")
+          return "Erro ao processar resposta"
+        end
+      end
+
+    rescue StandardError => e
+      $logger.error("Erro na requisição: #{e.message}")
+      retry_count += 1
+      if retry_count < max_retries
+        $logger.info("Aguardando #{retry_delay} segundos antes de tentar novamente...")
+        sleep retry_delay
+        retry_delay *= 2
+      else
+        # Tentar Google Translate como último recurso
+        if result = translate_with_google(clean_text, direction)
+          TRANSLATION_CACHE[cache_key_str] = result
+          return result
+        end
+        return "Erro ao traduzir após #{max_retries} tentativas"
+      end
     end
   end
+
+  "Erro ao traduzir após #{max_retries} tentativas"
 end
 
 # Lista de mensagens em memória
@@ -104,6 +166,7 @@ messages = []
 Thread.new do
   loop do
     begin
+      $logger.info("Buscando novas mensagens do Slack...")
       all = fetch_messages
       all.each do |msg|
         # Ignora mensagens já processadas
@@ -117,7 +180,8 @@ Thread.new do
         }
       end
     rescue StandardError => e
-      puts "Erro ao buscar mensagens do Slack: #{e.message}"
+      $logger.error("Erro ao buscar mensagens do Slack: #{e.message}")
+      $logger.error(e.backtrace.join("\n"))
     end
     sleep 5
   end
