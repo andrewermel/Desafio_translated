@@ -28,12 +28,43 @@
       padding: 20px;
     }
 
-    .message {
+    .messages-container {
       background-color: #ffffff;
       padding: 15px;
       margin-bottom: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-height: 400px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .messages-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: min-content;
+    }
+
+    .message {
+      background-color: #f8f9fa;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .message:last-child {
+      margin-bottom: 0;
+    }
+
+    .translation-section {
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
 
     .message strong {
@@ -98,31 +129,37 @@
 
   <div class="content">
     <h2>Mensagens</h2>
-
-    <% messages.each do |m| %>
-      <div class="message">
-        <p><strong>EN:</strong> <%= m[:original] %></p>
-        <p><strong>PT:</strong> <%= m[:translated] %></p>
+    
+    <div class="messages-container">
+      <div class="messages-wrapper">
+        <% messages.each do |m| %>
+          <div class="message">
+            <p><strong>EN:</strong> <%= m[:original] %></p>
+            <p><strong>PT:</strong> <%= m[:translated] %></p>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
 
-    <form action="/reply" method="post" id="reply-form">
-      <textarea name="text" placeholder="Digite sua mensagem em português" required></textarea><br>
-      <button type="submit">Visualizar tradução</button>
-    </form>
-
-    <div id="error-message"></div>
-    <div id="success-message"></div>
-
-    <div id="confirm-section">
-      <p><strong>Texto original (PT):</strong> <span id="original-text"></span></p>
-      <p><strong>Tradução (EN):</strong> <span id="translated-text"></span></p>
-      <form action="/send" method="post" id="send-form">
-        <input type="hidden" name="text" id="final-text">
-        <input type="hidden" name="original" id="original-text-input">
-        <button type="submit">Confirmar e enviar</button>
-        <button type="button" onclick="document.getElementById('confirm-section').style.display = 'none'">Cancelar</button>
+    <div class="translation-section">
+      <form action="/reply" method="post" id="reply-form">
+        <textarea name="text" placeholder="Digite sua mensagem em português" required></textarea><br>
+        <button type="submit">Visualizar tradução</button>
       </form>
+
+      <div id="error-message"></div>
+      <div id="success-message"></div>
+
+      <div id="confirm-section">
+        <p><strong>Texto original (PT):</strong> <span id="original-text"></span></p>
+        <p><strong>Tradução (EN):</strong> <span id="translated-text"></span></p>
+        <form action="/send" method="post" id="send-form">
+          <input type="hidden" name="text" id="final-text">
+          <input type="hidden" name="original" id="original-text-input">
+          <button type="submit">Confirmar e enviar</button>
+          <button type="button" onclick="document.getElementById('confirm-section').style.display = 'none'">Cancelar</button>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -158,12 +195,35 @@
       }
     };
 
+    // Função aprimorada para rolar para a última mensagem
+    function scrollToBottom(container) {
+      // Força um reflow para garantir que temos a altura correta
+      container.offsetHeight;
+      
+      // Rola para o final com um pequeno ajuste extra para garantir
+      container.scrollTop = container.scrollHeight + 100;
+      
+      // Agenda uma segunda rolagem para garantir após o DOM ter sido atualizado
+      setTimeout(() => {
+        container.scrollTop = container.scrollHeight + 100;
+      }, 100);
+    }
+
     // Função para buscar e atualizar mensagens
     async function atualizarMensagens() {
       try {
         const response = await fetch('/messages');
         const messages = await response.json();
-        const contentDiv = document.querySelector('.content');
+        const messagesContainer = document.querySelector('.messages-container');
+        const messagesWrapper = document.querySelector('.messages-wrapper');
+        
+        // Verifica se estava no final antes da atualização
+        const isAtBottom = Math.abs(
+          messagesContainer.scrollHeight - 
+          messagesContainer.scrollTop - 
+          messagesContainer.clientHeight
+        ) < 10;
+        
         const messagesHtml = messages.map(m => `
           <div class="message">
             <p><strong>EN:</strong> ${m.original}</p>
@@ -171,12 +231,12 @@
           </div>
         `).join('');
         
-        // Atualiza apenas a seção de mensagens
-        const messagesSection = document.querySelector('.content h2').nextElementSibling;
-        while (messagesSection.nextElementSibling && messagesSection.nextElementSibling.className === 'message') {
-          messagesSection.nextElementSibling.remove();
+        messagesWrapper.innerHTML = messagesHtml;
+
+        // Rola para o final se estava no final antes ou se é a primeira carga
+        if (isAtBottom || messages.length > 0) {
+          scrollToBottom(messagesContainer);
         }
-        messagesSection.insertAdjacentHTML('afterend', messagesHtml);
       } catch (error) {
         console.error('Erro ao atualizar mensagens:', error);
       }
@@ -184,6 +244,25 @@
 
     // Atualiza as mensagens a cada 5 segundos
     setInterval(atualizarMensagens, 5000);
+
+    // Garante que comece rolado para baixo e ajusta após o carregamento completo
+    document.addEventListener('DOMContentLoaded', function() {
+      const messagesContainer = document.querySelector('.messages-container');
+      scrollToBottom(messagesContainer);
+      
+      // Garante que role novamente após todas as imagens e recursos carregarem
+      window.addEventListener('load', function() {
+        scrollToBottom(messagesContainer);
+      });
+    });
+
+    // Garante que role para baixo após enviar uma nova mensagem
+    document.getElementById('send-form').addEventListener('submit', function() {
+      setTimeout(() => {
+        const messagesContainer = document.querySelector('.messages-container');
+        scrollToBottom(messagesContainer);
+      }, 100);
+    });
   </script>
 
 </body>
