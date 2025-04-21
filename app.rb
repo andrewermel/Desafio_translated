@@ -6,16 +6,29 @@ require 'pry'
 require 'logger'
 require 'cgi'
 require 'rack'
+require 'rack/cors'
 
-# Configuração básica do Sinatra
+
+
+
+
+# Configuração do Sinatra
+
 set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
 set :environment, :production
 enable :logging
 
-# Configurações de proteção e CORS
 disable :protection
 set :protection, except: [:remote_token, :frame_options, :json_csrf]
+
+
+
+
+
+
+
+# CORS (Cross-Origin Resource Sharing)
 
 before do
   headers 'Access-Control-Allow-Origin' => '*',
@@ -27,9 +40,6 @@ options "*" do
   200
 end
 
-require 'rack/cors'
-
-# Configuração do CORS
 use Rack::Cors do
   allow do
     origins '*'
@@ -39,26 +49,30 @@ use Rack::Cors do
   end
 end
 
-# Configuração básica do Sinatra
-set :bind, '0.0.0.0'
-set :port, ENV['PORT'] || 4567
-set :protection, :except => [:json_csrf]
 
-# Configurar logger como variável global
+
+
+
+# Logger e cache
+
 $logger = Logger.new('application.log')
 $logger.level = Logger::INFO
 
-# Cache de traduções
 TRANSLATION_CACHE = {}
 
-# Função para buscar mensagens do Slack
+
+
+
+
+
+# Busca mensagens do Slack
+
 def fetch_messages
-  # Configurações para buscar as últimas mensagens
   params = {
     channel: ENV['SLACK_CHANNEL_ID'],
-    limit: 100,  # Número máximo de mensagens para buscar
-    inclusive: true,  # Incluir a mensagem mais antiga
-    oldest: (Time.now - (7 * 24 * 60 * 60)).to_i  # Mensagens da última semana
+    limit: 100,
+    inclusive: true,
+    oldest: (Time.now - (7 * 24 * 60 * 60)).to_i
   }
   
   query = params.map { |k,v| "#{k}=#{v}" }.join('&')
@@ -75,28 +89,30 @@ def fetch_messages
       return []
     end
 
-    # Log do número de mensagens encontradas
     if json['messages']
       $logger.info("Encontradas #{json['messages'].length} mensagens no canal")
     end
 
     return [] unless json['ok'] && json['messages']
-    json['messages'].reverse  # Invertendo para mostrar na ordem cronológica
+    json['messages'].reverse
   rescue StandardError => e
     $logger.error("Erro ao buscar mensagens do Slack: #{e.message}")
     []
   end
 end
 
-# Função para gerar chave de cache
 def cache_key(text, direction)
   "#{text}:#{direction}"
 end
 
+
+
+
+# Função de tradução
+
 def translate(text, direction = :en_to_pt)
   return "Texto vazio" if text.nil? || text.strip.empty?
 
-  # Verificar cache primeiro
   cache_key_str = cache_key(text, direction)
   if TRANSLATION_CACHE[cache_key_str]
     $logger.info("Usando tradução em cache para: #{text}")
@@ -108,12 +124,7 @@ def translate(text, direction = :en_to_pt)
     return "Erro de configuração"
   end
 
-  url = case direction
-        when :pt_to_en
-          ENV['LLM_PT_EN_URL']
-        else
-          ENV['LLM_EN_PT_URL']
-        end
+  url = direction == :pt_to_en ? ENV['LLM_PT_EN_URL'] : ENV['LLM_EN_PT_URL']
 
   headers = {
     "Authorization" => "Bearer #{ENV['LLM_API_KEY']}", 
@@ -204,24 +215,27 @@ def translate(text, direction = :en_to_pt)
   "Não foi possível realizar a tradução"
 end
 
-# Lista de mensagens em memória
 messages = []
 
-# Thread para buscar mensagens do Slack em segundo plano
+
+
+
+
+
+# Thread para escutar mensagens do Slack
+
 Thread.new do
   loop do
     begin
       $logger.info("Buscando novas mensagens do Slack...")
       all = fetch_messages
       all.each do |msg|
-        # Ignora mensagens já processadas
         next if messages.any? { |m| m[:ts] == msg['ts'] }
 
-        # Adiciona a mensagem original e traduzida à lista
         messages << {
           ts: msg['ts'],
           original: msg['text'],
-          translated: translate(msg['text'], :en_to_pt)  # Especifica direção EN->PT
+          translated: translate(msg['text'], :en_to_pt)
         }
       end
     rescue StandardError => e
@@ -232,36 +246,43 @@ Thread.new do
   end
 end
 
-# Rota para exibir as mensagens no navegador
+
+
+
+
+
+# Rotas da aplicação
+
 get '/' do
   erb :index, locals: { messages: messages }
 end
 
-# Rota para traduzir a resposta do usuário
+
+# Recebe texto em português, traduz para inglês e retorna em JSON.
+
 post '/reply' do
   content_type :json
   pt = params[:text]
 
-  # Validação para garantir que o texto não esteja vazio
   if pt.nil? || pt.strip.empty?
     return { error: "Texto vazio" }.to_json
   end
 
-  en = translate(pt, :pt_to_en)  # Especifica direção PT->EN
+  en = translate(pt, :pt_to_en)
   { translated: en }.to_json
 end
 
-# Rota para enviar a resposta para o Slack
+
+# Recebe um texto traduzido e o envia para o Slack.
+
 post '/send' do
   text = params[:text]
   original = params[:original]
 
-  # Validação para garantir que o texto não esteja vazio
   if text.nil? || text.strip.empty?
     return { error: "Texto vazio" }.to_json
   end
 
-  # Envia a mensagem traduzida para o Slack
   response = HTTParty.post("https://slack.com/api/chat.postMessage", {
     headers: { "Authorization" => "Bearer #{ENV['SLACK_BOT_TOKEN']}" },
     body: {
@@ -271,7 +292,6 @@ post '/send' do
   })
 
   if response.code == 200
-    # Adiciona a mensagem à lista local imediatamente
     messages.unshift({
       ts: Time.now.to_i.to_s,
       original: text,
@@ -287,7 +307,9 @@ post '/send' do
   end
 end
 
-# Rota para fornecer as mensagens em formato JSON
+
+# Retorna as mensagens traduzidas em formato JSON para serem consumidas via API.
+
 get '/messages' do
   content_type :json
   messages.to_json

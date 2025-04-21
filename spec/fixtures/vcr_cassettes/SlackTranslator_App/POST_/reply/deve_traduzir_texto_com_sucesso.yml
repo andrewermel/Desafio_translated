@@ -1,0 +1,2207 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"entrou no canal","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:09 GMT
+      X-Inference-Id:
+      - Oe3UUDDIe3sF7C1Wb_rh5
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065581-743676b30acb42216e2bb8f9
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.396'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 80e150c3cd619899dc38fb20936dc086.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - BHx9srpQ1ZubJ3Vdvyc_zkG5PZcQdE7qGpUpBg4WF52_hh7T86-ang==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"entrou no canal"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:09 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"A minha","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '32'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:09 GMT
+      X-Compute-Time:
+      - '0.386'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065581-39b9e8ab568c58d819e8d5c1
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - LzrGfMsBZyW_aGHvx3y64
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5798112148ae9e672af737182da15f62.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - aGcgeWbu6vSYjl5E-dIjHHBKxlnTE59tGXwCeEyrCx2Xq63CH3Cgvw==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"A minha"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:10 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"hello how are you?","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '43'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:10 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065582-06fb9c0c30a9831356146fd6
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.437'
+      X-Inference-Id:
+      - aDJ5pVq6g7ZFq-EKQ0FeT
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 65d621b9501cbb11ca6f34a1af626466.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - mHFyIDctbYbzkUxbevw_oEILuCMlURjHaG59vU5F8oDf_8gRnVHwPQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9sw6EsIGNvbW8gZXN0w6FzPyJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:10 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"my name is andrew","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '43'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:10 GMT
+      X-Compute-Type:
+      - cache
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065582-4d8f614772997ff344be10b2
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - y20PRKknpfiUbhWC7H1NJ
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.442'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b0cb9245c8703f606e2b3987ee6890c0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - PCVTUsgisCzXI8jzZgIjRmKf_vpl1dEVEomFcTn_KYF81LZq-SEP0A==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik1ldSBub21lIMOpIEFuZHJldyJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:10 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"my mother is dead","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '47'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:10 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065582-14bd9eed6284a99236726496
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - 8d5PB4CU6q7G1CzrpSVlc
+      X-Compute-Type:
+      - cache
+      X-Compute-Time:
+      - '0.373'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 78249d95c40ff7fa8ee7c73bfbe66904.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - 9cY9qTOMSbXHQDiqzSfiYan6ARUGkFYWwgTG0g69PO_aXaliLgrLkw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik1pbmhhIG3Do2UgZXN0w6EgbW9ydGEifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:11 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"my","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '32'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:11 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065582-4a9d28cf42a874bd6bdf311f
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.255'
+      X-Inference-Id:
+      - 8Hem2rhU1aXrsK22oNROr
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6e3a64c1dd636ff586c9b3cec075770e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - KyWZ2u2sMuFXmQKg7lytR-5wT8fZL5eIjn2D8sqAk-vreuIStOB6kQ==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"A minha"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:12 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"hello world!","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '36'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:12 GMT
+      X-Compute-Time:
+      - '0.334'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065584-72ed45cf61bb9913169e87cf
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - lCHH0aEyhzzTF-kebhTIZ
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 0091a18cf6c89e8cba78991fa217762c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - iBjMMjikEczN9zZ8uji3Vqln2pvn7fI2lnvmlk_qAPsY55MxKNJeZw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9sw6EgbXVuZG8hIn1d
+  recorded_at: Mon, 21 Apr 2025 14:26:12 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"hello world!!","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '37'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:12 GMT
+      X-Compute-Time:
+      - '0.444'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065584-02fb97606ff3a2023ea11adb
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Inference-Id:
+      - OzGYCStU_z3pHlUC6MvP5
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 42a549e60dcb35d3c3908f459bdf9f62.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - oyJLFpBMBTewzKv3yErP2N210gDlG25g4FPybFS2CiENTEfHABvg1w==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9sw6EgbXVuZG8hISJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:12 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Access tokens authenticate your identity to the Hugging
+        Face Hub and allow applications to perform actions based on token permissions.  Do
+        not share your Access Tokens with anyone; we regularly check for leaked Access
+        Tokens and remove them immediately.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '307'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:12 GMT
+      X-Compute-Time:
+      - '1.906'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065584-598db0f85dc4728f18952853
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Inference-Id:
+      - DHg_J0DPehz0EfKgWk8bY
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a18ffd49cb0150d72aa8f289eec6fa1e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - xSYMhM6SeQlO7VQEA5oyIwftmftBxWdSn5RcQ8pQaj5Cl0wyXyZfCg==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9zIHRva2VucyBkZSBhY2Vzc28gYXV0ZW50aWNhbSBzdWEgaWRlbnRpZGFkZSBubyBodWdnaW5nIGZhY2UgaHViIGUgcGVybWl0ZW0gcXVlIG9zIGFwbGljYXRpdm9zIGV4ZWN1dGVtIGHDp8O1ZXMgY29tIGJhc2UgZW0gcGVybWlzc8O1ZXMgZGUgdG9rZW4uIE7Do28gY29tcGFydGlsaGUgc2V1cyB0b2tlbnMgZGUgYWNlc3NvIGNvbSBuaW5ndcOpbTsgdmVyaWZpY2Ftb3MgcmVndWxhcm1lbnRlIG9zIHRva2VucyBkZSBhY2Vzc28gdmF6YWRvcyBlIG9zIHJlbW92ZW1vcyBpbWVkaWF0YW1lbnRlLiJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:12 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"O mundo é o mundo!!","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '45'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:13 GMT
+      X-Compute-Type:
+      - cache
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065584-5a3f0eba0484a5512fff84d3
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - "-uwRDsPDjTroB-jWe-4Eu"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.377'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 62a107b7071613efe0dd66ef388a644a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - uHxKGbQkYi_LDEEeCzShmKjjgo_PWvlAiCV9kXizJ80EDC8yLSqFSQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik8gbXVuZG8gw6kgbyBtdW5kbyEhIn1d
+  recorded_at: Mon, 21 Apr 2025 14:26:13 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"ola mundo _(original em português: )_","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '63'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:13 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065585-21151bda5e59a107523a902f
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - ZCpel7-AUD5Ug_OwUy8zQ
+      X-Compute-Type:
+      - cache
+      X-Compute-Time:
+      - '0.600'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5ff4eb7f442543a952b90d418d9457ba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - saWuWHX7KMG-ncErBdB16HK8g1jDx2NXMKhaeaBGtf3GI1-DGsh2vg==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Im9sYSBtdW5kbyBfKG9yaWdpbmFsIGVtIHBvcnR1Z3XDqnM6IClfIn1d
+  recorded_at: Mon, 21 Apr 2025 14:26:13 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"My mom. _(original em português: minha mae)_","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '63'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:13 GMT
+      X-Inference-Id:
+      - MG2Msx2OC-f96p6PwSdhE
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065585-7532a88d44158c1f494463d0
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.610'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5df90d8b07f873c947e7e3d9ff174026.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - 1paH-cxCCJp054MnFDIfjPJ9uW2xeA9VW_S3k4p6AdCk3Zg4IevCKw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Il8ob3JpZ2luYWwgZW0gcG9ydHVndcOqczogbWluaGEgbcOjZSlfIn1d
+  recorded_at: Mon, 21 Apr 2025 14:26:13 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Hello, mae. _(original em português: ola mae\n)_","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '72'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:14 GMT
+      X-Inference-Id:
+      - AgwmNm4XmfHFZULKP4MNf
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065585-51b527e3738b31b979bee1f4
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.705'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 66e033c5d10bcbd4e2ec7dc233d3bb5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - CmTrkRhTPi5wmqMsPbLzsZt8i_fkqfaxItyTxTNj4wqaC6plGw86-Q==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9sw6EsIG1hZS4gXyhvcmlnaW5hbCBlbSBwb3J0dWd1w6pzOiBvbGEgbWFlIClfIn1d
+  recorded_at: Mon, 21 Apr 2025 14:26:14 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"My mom.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '38'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:14 GMT
+      X-Inference-Id:
+      - CwtMOlNbd0S3b-vYA-9Q6
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065586-5d6a27bf5ffa7ef641fc510d
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.240'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 88c333921d5c405e037b84bb8c2dc33e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - Z6DL5L4inr0EZl5pKqjaGFYVTgMle-LMCfHK1KbSJet42h1Iqie3yw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6IkEgbWluaGEgbcOjZS4ifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:14 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"hello!","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '31'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:14 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065586-7db9627330d93ac5134a6c98
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.141'
+      X-Compute-Type:
+      - cache
+      X-Inference-Id:
+      - kNXqJY9B5AI2vbHtIybyR
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 fb6a4eca9caced7b791557c24b8c6606.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - CLnPLFSbSW-mEfI7DEXtKvRCv-DM7k0Lf0HV_UR-U52j48rgS1gfuQ==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Estou?"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:14 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"I''m fine, thank you.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '45'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:14 GMT
+      X-Inference-Id:
+      - 590sHn8ko9W2Rg7Ba9Lct
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065586-1f6198627dc01bb76ca9ccc0
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.357'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6aaea006c2eed91ec1ca42167f2472f8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - 6D0ZHUXcFKXT5bdSEyq2sYCvO6lGLLNofcrYvFVjhdQoT5-hrvOibg==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Estou bem, obrigado."}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:15 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"good morning","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '32'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:15 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065587-089b4065434a6463751542b2
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - LzyUav9er0cFQJVI2HqXw
+      X-Compute-Type:
+      - cache
+      X-Compute-Time:
+      - '0.234'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f88bd4c15622473fc18eef7d15f4b8d4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - LpXGpDa3UL6M8lnOyfLwAwh22O83eJbm2rSR3Qpvx4Scn0etAg5WbQ==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Bom dia"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:15 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"good","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '28'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:15 GMT
+      X-Inference-Id:
+      - PO4bSwHh276IvPbwqGfiA
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065587-555cd91b2470691a421c55fa
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.107'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a5f39a4680587f7042bdbc4ff6cd417c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - m-kNholYBoMDrRwmVgplodAxnv_anC4JaKDjwKAarfKX_Rkop1w8Sg==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Bom"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:15 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"dog","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '29'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:15 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065587-33bff7d80468fc921dba73cb
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - k6l6unuHfab2q4TnEfEO_
+      X-Compute-Type:
+      - cache
+      X-Compute-Time:
+      - '0.167'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 7fcd30c75fe4480ba8986b43467bfd06.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - iw68f8LAldbCObeCIlNBM1yHbvh9xra8eXSYNDcB-vgyrQL-yk3_fw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6ImPDo28ifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:16 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"my mother","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '35'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:16 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065588-162f13e439140f675b152000
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.142'
+      X-Compute-Type:
+      - cache
+      X-Inference-Id:
+      - j1yDnNOd6pt2RxevZs5IJ
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 78249d95c40ff7fa8ee7c73bfbe66904.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - K6BCOMO1uaSAaYAqRDrtw5GHj0g7kwL-LhVojV4C4PeFCUY6Oqb5Rw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Im1pbmhhIG3Do2UifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:16 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"I like to dance a tango with my grandmother","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '62'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:16 GMT
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065588-02712d32104038f1503ac333
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.358'
+      X-Inference-Id:
+      - _D1dHq_9xzt2_VJFfv-5s
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 94d1b34d858b1d0f17042496999ab014.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - _7G-hqH7vHiHrSCmS2-C4CEol1FVkqfMjtj1CjOHXubRrPOgPww0aQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ikdvc3RvIGRlIGRhbsOnYXIgdGFuZ28gY29tIG1pbmhhIGF2w7MifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:16 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Hello, come to me.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '46'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:16 GMT
+      X-Compute-Time:
+      - '0.277'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065588-20fabd6d0996fc871461855d
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Inference-Id:
+      - Esuy_WrBUBPYx7loBkCe5
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b0cb9245c8703f606e2b3987ee6890c0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - FvUFb2ZQo6rfMBNjFiP2n-rKYbzByaApWV_Ph1QLzuCvEW9e7nvh4w==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik9sw6EsIHZlbSB0ZXIgY29taWdvLiJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:16 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"My mother''s name is Corisas","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '56'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:16 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065588-4c9ae8ea56d2413618de6bc0
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.423'
+      X-Compute-Type:
+      - cache
+      X-Inference-Id:
+      - jmhvDoigtrRwg7PhWivn-
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 1904c7aff4976cd4798f07f5b45f7f70.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - dMDa8W_p9lQMfyt7MOvIuc3hSjz7m2TFzJ08LS2eAKnAIqS1zMAaXA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik8gbm9tZSBkYSBtaW5oYSBtw6NlIMOpIENvcmlzYXMifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:17 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"So it''s over?","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '39'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:17 GMT
+      X-Compute-Time:
+      - '0.277'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065589-4e624b7866d4e327011cbb3e
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Inference-Id:
+      - io2Zgrv6oDuz1YrFgYjko
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f63be8f3fba8836f46fef0415dbf70ce.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - LzbWVmmHM1iwdh42RvPuxDIjVlLVUBfnlrVYkKUCXs5y9MZg7OSTdw==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6IkVudMOjbyBhY2Fib3U/In1d
+  recorded_at: Mon, 21 Apr 2025 14:26:17 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Good morning!","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '33'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:17 GMT
+      X-Inference-Id:
+      - oKjGkTgdKjlgTE1vYvOa5
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065589-434e31e9683d08e309a955e0
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.216'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 3ed656b86a7abb29b14e84aa169ffd38.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - 6rlq2bM2P7JDILLImvGg4eXEmlfGCeEj1hqvTfsbdugkZ34Z-_jZzQ==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Bom dia!"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:17 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"looking for all the conversations","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '54'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:17 GMT
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065589-43a8597b78cd5f965d5394c1
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Type:
+      - cache
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Time:
+      - '0.315'
+      X-Inference-Id:
+      - dE9yTYPZEH22tRu9zx4-3
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6aaea006c2eed91ec1ca42167f2472f8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - sMKU6FxuCCPTHzb50pVxFiyAzhAZhl7O6VCipmkhL6H8infD45_QrA==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"procura de todas as conversas"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:18 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"It worked.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '35'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:18 GMT
+      X-Inference-Id:
+      - FMhAV1YDM-27ohS9s7_Ym
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558a-53354f2b763264460cc40d2b
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.256'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 88c333921d5c405e037b84bb8c2dc33e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - fzerz8H87yVAtAnfDRZzhtbt5qsPiKBC_DxPMAiZ8Xy04mN8xKKmLQ==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Funcionou."}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:18 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Hello.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '31'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:18 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558a-4ac047522b9b334809bafd94
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.245'
+      X-Compute-Type:
+      - cache
+      X-Inference-Id:
+      - BjCES_x6pWbInjxssFWit
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5798112148ae9e672af737182da15f62.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - OJMHN5iDQB1foS5JYi7ty4HxN6RlsxoJug26T9ISkoXfcibrzMKJDA==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Estou?"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:18 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"I like it.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:18 GMT
+      X-Compute-Time:
+      - '0.305'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558a-4d4171cb684a47fa4008ad52
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Inference-Id:
+      - hElqTNht4qZUzCDUWqc8Q
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 e40594d191a88dc4bce1cbdfa1173f2a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - cZauJePNNr_aGjT6OayJ3rQATubr-Edcn-LwY73_xRJ7mMp_EqqbkA==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Eu gosto."}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:18 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"My father.","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '35'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:18 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558a-62dc5aa46f66bf736b44993d
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.228'
+      X-Inference-Id:
+      - tIFOhKI_XesW5RUIGSFFn
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 65d621b9501cbb11ca6f34a1af626466.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - Nt4mVxxZqUMc3aB8AMlc3HlbMATCkKQP-RgNCSB8-jTMfqX567HRnA==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"O meu pai."}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:19 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"My life is beautiful","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '44'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:19 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558b-5e458f7f2894a6bc2610938b
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      X-Compute-Time:
+      - '0.218'
+      X-Inference-Id:
+      - "-qhg0Jqon-FyLgcGmGTA5"
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Compute-Type:
+      - cache
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 089473bef8bc5f21a05ea772689d22f6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - kQctFE96s9zK_KQEJBU7MkoD7mnVExiq61heWzq73MtGYYxAxT0urA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik1pbmhhIHZpZGEgw6kgbGluZGEifV0=
+  recorded_at: Mon, 21 Apr 2025 14:26:19 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-tc-big-en-pt
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"my dog ​​is black","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '46'
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:19 GMT
+      X-Compute-Time:
+      - '0.226'
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-6806558b-0143b26c30442d8c36a36727
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,X-Total-Count,ETag,Link,Accept-Ranges,Content-Range,X-Xet-Access-Token,X-Xet-Token-Expiration,X-Xet-Cas-Url,X-Xet-Hash
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Compute-Type:
+      - cache
+      X-Sha:
+      - 9f2863d807ecf91a374bdbecb8d01e402e90622e
+      X-Inference-Id:
+      - JZC5Szo0c13wGoQUCkcrg
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 62a107b7071613efe0dd66ef388a644a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - N3FzmRS3_shO1ZIB6WQNMpz3_8u-sQxqmQT4EPbRvthrb_xTNXf5NA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3sidHJhbnNsYXRpb25fdGV4dCI6Ik1ldSBjYWNob3JybyDDqSBwcmV0byJ9XQ==
+  recorded_at: Mon, 21 Apr 2025 14:26:19 GMT
+- request:
+    method: post
+    uri: https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-ROMANCE-en
+    body:
+      encoding: UTF-8
+      string: '{"inputs":"Olá, como vai você?","options":{"wait_for_model":true,"use_cache":true}}'
+    headers:
+      Authorization:
+      - Bearer <LLM_API_KEY>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 21 Apr 2025 14:26:19 GMT
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Server:
+      - uvicorn
+      X-Powered-By:
+      - huggingface-moon
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Request-Id:
+      - Root=1-68065581-4f844cbf3e6437093573c711
+      Vary:
+      - Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - x-compute-type, x-compute-time
+      X-Compute-Time:
+      - '0.208'
+      X-Inference-Id:
+      - WGiiuFPiAokXBJRIQ1gqA
+      X-Compute-Type:
+      - cpu
+      X-Sha:
+      - e9ca9975e3972afd80732f08ce01d3a1339f47f8
+      X-Compute-Characters:
+      - '19'
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b119d190fd68a1b5c82101503504cff2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-P1
+      X-Amz-Cf-Id:
+      - tne1dGJu2ttoEBGYB6lqVphPtEdM2yiCEU3vnWpVw2Ui_LOTaY0D8Q==
+    body:
+      encoding: UTF-8
+      string: '[{"translation_text":"Hi, how are you?"}]'
+  recorded_at: Mon, 21 Apr 2025 14:26:19 GMT
+recorded_with: VCR 6.3.1
