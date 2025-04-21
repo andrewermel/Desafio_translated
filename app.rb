@@ -93,28 +93,9 @@ def cache_key(text, direction)
   "#{text}:#{direction}"
 end
 
-# Função para traduzir usando Google Translate como fallback
-def translate_with_google(text, direction)
-  source_lang = direction == :pt_to_en ? 'pt' : 'en'
-  target_lang = direction == :pt_to_en ? 'en' : 'pt'
-  
-  encoded_text = CGI.escape(text)
-  url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=#{source_lang}&tl=#{target_lang}&dt=t&q=#{encoded_text}"
-  
-  begin
-    response = HTTParty.get(url)
-    if response.code == 200
-      json = JSON.parse(response.body)
-      translated = json[0].map { |segment| segment[0] }.join(' ')
-      return translated
-    end
-  rescue => e
-    $logger.error("Erro no Google Translate: #{e.message}")
-  end
-  nil
-end
-
 def translate(text, direction = :en_to_pt)
+  return "Texto vazio" if text.nil? || text.strip.empty?
+
   # Verificar cache primeiro
   cache_key_str = cache_key(text, direction)
   if TRANSLATION_CACHE[cache_key_str]
@@ -122,13 +103,11 @@ def translate(text, direction = :en_to_pt)
     return TRANSLATION_CACHE[cache_key_str]
   end
 
-  # Verifica se as variáveis de ambiente estão configuradas corretamente
   unless ENV['LLM_API_KEY'] && ENV['LLM_EN_PT_URL'] && ENV['LLM_PT_EN_URL']
-    $logger.error("LLM_API_KEY ou URLs de tradução não estão configuradas corretamente.")
+    $logger.error("Configuração incompleta das variáveis de ambiente")
     return "Erro de configuração"
   end
 
-  # Seleciona a URL baseado na direção da tradução
   url = case direction
         when :pt_to_en
           ENV['LLM_PT_EN_URL']
@@ -142,77 +121,87 @@ def translate(text, direction = :en_to_pt)
   }
 
   clean_text = text.gsub(/<@[^>]+>/, '').strip
-  data = { inputs: clean_text }
+  data = { 
+    inputs: clean_text,
+    options: { 
+      wait_for_model: true,
+      use_cache: true
+    }
+  }
 
-  # Configurações de retry
-  max_retries = 5  # Aumentado para 5 tentativas
+  max_retries = 3
   retry_count = 0
-  retry_delay = 2 # segundos
+  retry_delay = 2
 
   while retry_count < max_retries
     begin
-      $logger.info("Tentativa #{retry_count + 1} de #{max_retries} - Enviando para Hugging Face (#{direction}): #{data.to_json}")
+      $logger.info("Tentando tradução (#{retry_count + 1}/#{max_retries})")
+      $logger.info("URL: #{url}")
+      $logger.info("Texto para tradução: #{clean_text}")
       
-      response = HTTParty.post(url, body: data.to_json, headers: headers)
+      response = HTTParty.post(
+        url, 
+        body: data.to_json,
+        headers: headers,
+        timeout: 30
+      )
 
-      if response.code == 503
-        retry_count += 1
-        if retry_count < max_retries
-          $logger.info("Erro 503 recebido. Aguardando #{retry_delay} segundos antes de tentar novamente...")
-          sleep retry_delay
-          retry_delay *= 2
-          next
-        else
-          # Tentar Google Translate como fallback
-          $logger.info("Tentando Google Translate como fallback...")
-          if result = translate_with_google(clean_text, direction)
-            TRANSLATION_CACHE[cache_key_str] = result
-            return result
-          end
-        end
-      end
+      $logger.info("Código de resposta: #{response.code}")
+      $logger.info("Resposta completa: #{response.body}")
 
-      if response.code != 200
-        $logger.error("Erro na tradução: Código #{response.code} - #{response.body}")
-        # Tentar Google Translate como fallback
-        if result = translate_with_google(clean_text, direction)
-          TRANSLATION_CACHE[cache_key_str] = result
-          return result
-        end
-        return "Erro na tradução"
-      else
+      case response.code
+      when 200
         begin
           json = JSON.parse(response.body)
-          result = json.dig(0, "translation_text") || "Erro na tradução"
-          # Armazenar no cache
-          TRANSLATION_CACHE[cache_key_str] = result
-          $logger.info("Resposta da API: #{result}")
-          return result
-        rescue => e
-          $logger.error("Erro ao processar a resposta: #{e.message}")
+          if json.is_a?(Array) && json[0] && json[0]["translation_text"]
+            result = json[0]["translation_text"].strip
+            TRANSLATION_CACHE[cache_key_str] = result
+            $logger.info("Tradução bem sucedida: #{result}")
+            return result
+          else
+            $logger.error("Formato inesperado na resposta: #{json}")
+            return "Erro no formato da resposta"
+          end
+        rescue JSON::ParserError => e
+          $logger.error("Erro ao processar JSON: #{e.message}")
           return "Erro ao processar resposta"
         end
+      when 402
+        $logger.error("Erro 402: Payment Required - Modelo pode requerer assinatura")
+        return "Modelo temporariamente indisponível"
+      when 503
+        $logger.info("Modelo carregando, tentando novamente...")
+        retry_count += 1
+        sleep retry_delay
+        retry_delay *= 2
+        next
+      else
+        $logger.error("Erro HTTP #{response.code}: #{response.body}")
+        return "Erro na tradução (#{response.code})"
       end
 
-    rescue StandardError => e
-      $logger.error("Erro na requisição: #{e.message}")
+    rescue Net::OpenTimeout, Net::ReadTimeout => e
+      $logger.error("Timeout na requisição: #{e.message}")
       retry_count += 1
       if retry_count < max_retries
-        $logger.info("Aguardando #{retry_delay} segundos antes de tentar novamente...")
         sleep retry_delay
         retry_delay *= 2
       else
-        # Tentar Google Translate como último recurso
-        if result = translate_with_google(clean_text, direction)
-          TRANSLATION_CACHE[cache_key_str] = result
-          return result
-        end
-        return "Erro ao traduzir após #{max_retries} tentativas"
+        return "Tempo limite excedido"
+      end
+    rescue StandardError => e
+      $logger.error("Erro inesperado: #{e.message}")
+      retry_count += 1
+      if retry_count < max_retries
+        sleep retry_delay
+        retry_delay *= 2
+      else
+        return "Erro inesperado na tradução"
       end
     end
   end
 
-  "Erro ao traduzir após #{max_retries} tentativas"
+  "Não foi possível realizar a tradução"
 end
 
 # Lista de mensagens em memória
@@ -239,7 +228,7 @@ Thread.new do
       $logger.error("Erro ao buscar mensagens do Slack: #{e.message}")
       $logger.error(e.backtrace.join("\n"))
     end
-    sleep 5
+    sleep 1
   end
 end
 
