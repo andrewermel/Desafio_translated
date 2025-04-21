@@ -7,7 +7,7 @@ Aplicação Ruby para tradução em tempo real de mensagens do Slack usando LLM.
 - Ruby 2.7+
 - Conta no Slack com permissões de Bot
 - Conta no Hugging Face
-- Cloudflared instalado
+- Ngrok instalado
 
 ## Configuração
 
@@ -34,49 +34,27 @@ cp .env.example .env
 bundle install
 ```
 
-## Expondo o serviço na internet com Cloudflare Tunnel
+## Expondo o serviço na internet com Ngrok
 
-1. Instale o cloudflared:
+1. Instale o Ngrok:
+   - Faça o download em https://ngrok.com/download
+   - Extraia o arquivo baixado
+   - Mova o executável para um local no seu PATH
+
+2. Faça login no Ngrok:
+   - Crie uma conta em https://ngrok.com
+   - Copie o token de autenticação
+   - Execute o comando:
 ```bash
-# Linux
-curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-sudo dpkg -i cloudflared.deb
-
-# Mac
-brew install cloudflared
+ngrok config add-authtoken SEU_TOKEN_AQUI
 ```
 
-2. Faça login no Cloudflare:
+3. Inicie o túnel Ngrok:
 ```bash
-cloudflared tunnel login
+ngrok http 4567
 ```
 
-3. Crie um túnel:
-```bash
-cloudflared tunnel create slack-translator
-```
-
-4. Configure o túnel (substitua UUID pelo ID gerado):
-```bash
-cloudflared tunnel route dns UUID slack-translator.seu-dominio.com
-```
-
-5. Crie o arquivo de configuração:
-```bash
-cat << EOF > ~/.cloudflared/config.yml
-tunnel: UUID
-credentials-file: /home/user/.cloudflared/UUID.json
-ingress:
-  - hostname: slack-translator.seu-dominio.com
-    service: http://localhost:4567
-  - service: http_status:404
-EOF
-```
-
-6. Inicie o túnel:
-```bash
-cloudflared tunnel run
-```
+4. Copie a URL HTTPS fornecida pelo Ngrok (exemplo: https://seu-tunnel.ngrok.io)
 
 ## Executando a aplicação
 
@@ -87,10 +65,10 @@ ruby app.rb
 
 2. Acesse a aplicação:
    - Localmente: http://localhost:4567
-   - Internet: https://slack-translator.seu-dominio.com
+   - Internet: Use a URL HTTPS fornecida pelo Ngrok
 
 ## Uso
 
 - As mensagens do canal do Slack serão atualizadas automaticamente a cada 5 segundos
 - Para responder em português, use o campo de texto na parte inferior
-- Confirme a tradução antes de enviar para o Slack# Desafio_translated
+- Confirme a tradução antes de enviar para o Slack
